@@ -1,0 +1,99 @@
+# custom dark theme based on chalk + fixed node fill color issue
+color:
+  - '#fc97af'
+  - '#87f7cf'
+  - '#f7f494'
+  - '#72ccff'
+  - '#f7c5a0'
+  - '#d4a4eb'
+  - '#d2f5a6'
+  - '#76f2f2'
+backgroundColor: rgba(41,52,65,1)
+
+textStyle:
+  color: '#cccccc'
+
+title:
+  textStyle:
+    color: '#ffffff'
+  subtextStyle:
+    color: '#aaaaaa'
+
+legend:
+  textStyle:
+    color: '#dddddd'
+
+tooltip:
+  axisPointer:
+    lineStyle:
+      color: '#cccccc'
+      width: 1
+    crossStyle:
+      color: '#cccccc'
+      width: 1
+
+graph:
+  itemStyle:
+    # 不设置 color，防止覆盖节点颜色
+    borderWidth: 0
+    borderColor: '#ccc'
+  lineStyle:
+    width: 1
+    color: '#aaa'
+  symbolSize: 3
+  symbol: circle
+  smooth: true
+  label:
+    color: '#eeeeee'
+
+categoryAxis:
+  axisLine:
+    show: true
+    lineStyle:
+      color: '#999'
+  axisTick:
+    show: true
+    lineStyle:
+      color: '#666'
+  axisLabel:
+    show: true
+    color: '#ccc'
+  splitLine:
+    show: false
+    lineStyle:
+      color: ['#555']
+
+valueAxis:
+  axisLine:
+    show: true
+    lineStyle:
+      color: '#999'
+  axisTick:
+    show: true
+    lineStyle:
+      color: '#666'
+  axisLabel:
+    show: true
+    color: '#ccc'
+  splitLine:
+    show: true
+    lineStyle:
+      color: ['#444']
+
+toolbox:
+  iconStyle:
+    borderColor: '#aaa'
+  emphasis:
+    iconStyle:
+      borderColor: '#fff'
+
+dataZoom:
+  textStyle:
+    color: '#ccc'
+
+markPoint:
+  label:
+    color: '#eeeeee'
+  emphasis:
+    label:
+      color: '#eeeeee'

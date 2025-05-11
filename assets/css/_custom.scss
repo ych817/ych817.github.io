@@ -1,0 +1,114 @@
+.toc {
+  .toc-content {
+
+    code,
+    pre {
+      padding: 0.2em 0.4em;
+      margin: 0;
+      font-family: $code-font-family;
+      color: $code-color;
+      background-color: $code-background-color;
+      text-decoration: inherit;
+      @include border-radius($global-border-radius-small);
+      @include overflow-wrap(break-word);
+      @include line-break(auto);
+
+      [data-theme='dark'] & {
+        color: $code-color-dark;
+        background-color: $code-background-color-dark ;
+      }
+    }
+  }
+}
+
+code {
+  border-radius: global-border-radius-small !important;
+}
+
+:not(pre)>code {
+  border-radius: $global-border-radius-small !important;
+
+  [data-theme='dark'] & {
+    background-color: $code-background-color-dark !important;
+  }
+}
+
+// codefence
+.highlight {
+  >.chroma {
+    .code-header {
+      font-family: $code-font-family !important;
+      font-weight: $global-font-weight !important;
+      line-height: 1.2em !important;
+
+      [data-theme='dark'] & {
+        background-color: #3c3c3c !important;
+      }
+
+      .code-title {
+        .title-inner {
+          background-color: transparent !important;
+        }
+      }
+    }
+
+    table {
+      [data-theme='dark'] & {
+        // background-color: rgba(0, 0, 0, 0.6) !important;
+      }
+    }
+  }
+}
+
+// callouts
+.admonition {
+  border: 0 !important;
+
+  .admonition-title {
+    font-weight: $global-font-weight !important;
+    font-size: $code-font-size !important;
+    padding: 0.2em 1.8rem !important;
+  }
+}
+
+// alerts
+.alert {
+  .alert-title {
+    font-weight: $global-font-weight !important;
+    font-size: $code-font-size !important;
+  }
+}
+
+// mark
+.single {
+  .content {
+    mark {
+      border-radius: $global-border-radius-small !important;
+    }
+
+    sup {
+      border-radius: $global-border-radius-small !important;
+    }
+  }
+}
+
+// echarts
+.echarts {
+  margin: 0.5rem 0;
+  border: 1px solid;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+// home
+.home {
+  .home-avatar {
+    img {
+      height: 20rem !important;
+      width:  20rem !important;
+    }
+  }
+}

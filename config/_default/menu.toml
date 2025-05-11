@@ -1,0 +1,100 @@
+[[main]]
+    identifier = "home"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "主页"
+    url = "/"
+    title = ""
+    weight = 1
+    [main.params]
+        icon = "fa-solid fa-home"
+
+[[main]]
+    identifier = "posts"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "文章"
+    url = "/posts/"
+    title = ""
+    weight = 2
+    [main.params]
+        class = ""
+        draft = false
+        icon = "fa-solid fa-feather"
+
+[[main]]
+    identifier = "archives"
+    parent = ""
+    # you can add extra information before the name (HTML format is supported), such as icons
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
+    name = "归档"
+    url = "/archives/"
+    # title will be shown when you hover on this menu link
+    title = ""
+    weight = 3
+    # FixIt 0.2.14 | NEW add user-defined content to menu items
+    [main.params]
+        class = ""
+        draft = false
+        icon = "fa-solid fa-archive"
+        type = ""
+
+[[main]]
+    identifier = "collections"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "合集"
+    url = "/collections/"
+    title = ""
+    weight = 4
+    [main.params]
+        class = ""
+        draft = false
+        icon = "fa-solid fa-layer-group"
+
+[[main]]
+    identifier = "categories"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "分类"
+    url = "/categories/"
+    title = ""
+    weight = 5
+    [main.params]
+        class = ""
+        draft = false
+        icon = "fa-solid fa-folder-tree"
+
+[[main]]
+    identifier = "tags"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "标签"
+    url = "/tags/"
+    title = ""
+    weight = 6
+    [main.params]
+        class = ""
+        draft = false
+        icon = "fa-solid fa-tags"
+
+[[main]]
+    identifier = "about"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "关于"
+    url = "/about"
+    title = ""
+    weight = 7
+    [main.params]
+        class = ""
+        draft = false
+        icon = "fa-solid fa-circle-user"

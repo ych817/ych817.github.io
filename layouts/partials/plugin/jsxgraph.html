@@ -1,0 +1,22 @@
+{{- /* JSXGraph support for code fences extended and shortcodes. */ -}}
+{{- $width := .Options.width | default "100%" -}}
+{{- $height := .Options.height | default "20rem" -}}
+{{- $id := .Options.id | default (printf "jsxgraph-%d" now.UnixNano) -}}
+{{- $attrs := printf `id="%s" style="width: %v; height: %v; margin: 0.5rem 0; border: 1px solid; border-radius: 10px; overflow: hidden; background-color: white; page-break-inside: avoid; break-inside: avoid;"` $id $width $height -}}
+<div class="jsxgraph" {{ $attrs | safeHTMLAttr }}></div>
+<script>
+(function(){
+  var container = document.getElementById('{{ $id }}');
+
+  function runUserScript() {
+    // 替换掉 initBoard(...) 中写死的 ID，不管是 box / jxgbox / myboard
+    {{ .Inner | replaceRE "initBoard\\(\\s*['\"][^'\"]+['\"]" (printf "initBoard('%s'" $id) | safeJS }}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", runUserScript);
+  } else {
+    runUserScript();
+  }
+})();
+</script>

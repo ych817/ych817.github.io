@@ -1,0 +1,152 @@
+<!-- 引入 pdf-lib -->
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+
+<div id="print-controls" style="text-align: center; margin: 2rem 0;">
+  <button id="upload-btn" style="
+    background-color: #444;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+  ">点此上传本博文对应的 PDF 以自动为 PDF 添加书签</button>
+  <input type="file" id="pdf-upload" accept="application/pdf" style="display: none;" />
+</div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("upload-btn").addEventListener("click", () => {
+      document.getElementById("pdf-upload").click();
+    });
+    document.getElementById("pdf-upload").addEventListener("change", handlePdfUpload);
+  });
+
+  window.addEventListener("beforeprint", () => {
+    const headers = document.querySelectorAll(".single-title, .content h2, .content h3, .content h4");
+    headers.forEach((el, i) => {
+      if (el.querySelector("a.md-print-anchor")) return;
+      const anchor = document.createElement("a");
+      anchor.href = `af://n${i}`;
+      anchor.className = "md-header-anchor md-print-anchor";
+      anchor.style.display = "inline-block";
+      anchor.style.height = "0.1pt";
+      anchor.style.width = "0.1pt";
+      anchor.style.overflow = "hidden";
+      anchor.style.color = "transparent";
+      el.insertBefore(anchor, el.firstChild);
+    });
+  });
+
+  window.addEventListener("afterprint", () => {
+    document.querySelectorAll(".md-print-anchor").forEach(a => a.remove());
+  });
+
+  async function handlePdfUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return alert("请先选择一个 PDF 文件");
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+    const pages = pdfDoc.getPages();
+    const context = pdfDoc.context;
+
+    const markerMap = new Map();
+    for (let i = 0; i < pages.length; i++) {
+      const annots = pages[i].node.Annots?.();
+      if (!annots) continue;
+      for (let j = 0; j < annots.size(); j++) {
+        try {
+          const ann = annots.lookup(j, PDFLib.PDFDict);
+          const subtype = ann.get(PDFLib.PDFName.of("Subtype"));
+          if (subtype?.asString() !== "/Link") continue;
+          const action = ann.get(PDFLib.PDFName.of("A"));
+          const uri = action?.get(PDFLib.PDFName.of("URI"))?.asString();
+          const rect = ann.get(PDFLib.PDFName.of("Rect"))?.asRectangle();
+          const match = /^af:\/\/(.+)$/.exec(uri);
+          if (!match) continue;
+          const anchorId = match[1];
+          const y = rect.y;
+          markerMap.set(anchorId, { pageIndex: i, y });
+        } catch (err) {
+          console.warn("annotation parse failed", err);
+        }
+      }
+    }
+
+    const headings = Array.from(document.querySelectorAll(".single-title, .content h2, .content h3, .content h4"))
+      .map((el, i) => ({
+        level: el.matches(".single-title") ? 1 : parseInt(el.tagName[1]),
+        text: el.innerText.trim(),
+        marker: `n${i}`
+      }))
+      .filter(h => markerMap.has(h.marker));
+
+    if (headings.length === 0) {
+      alert("未在 PDF 中找到任何 af:// 书签标记，请确认已插入锚点并打印。");
+      return;
+    }
+
+    const outlineNodes = [];
+    headings.forEach(({ text, level, marker }) => {
+      const { pageIndex, y } = markerMap.get(marker);
+      const page = pages[pageIndex];
+      const destArray = context.obj([
+        page.ref,
+        PDFLib.PDFName.of("XYZ"),
+        PDFLib.PDFNumber.of(0),
+        PDFLib.PDFNumber.of(y),
+        PDFLib.PDFNull
+      ]);
+      const dict = context.obj({
+        Title: PDFLib.PDFHexString.fromText(text),
+        Dest: destArray
+      });
+      const ref = context.register(dict);
+      outlineNodes.push({ dict, ref, level, children: [] });
+    });
+
+    const stack = [], topLevel = [];
+    outlineNodes.forEach(node => {
+      while (stack.length > 0 && stack[stack.length - 1].level >= node.level) stack.pop();
+      if (stack.length === 0) topLevel.push(node);
+      else stack[stack.length - 1].children.push(node);
+      stack.push(node);
+    });
+
+    function linkSiblings(nodes) {
+      for (let i = 0; i < nodes.length; i++) {
+        const current = nodes[i];
+        if (i > 0) current.dict.set(PDFLib.PDFName.of("Prev"), nodes[i - 1].ref);
+        if (i < nodes.length - 1) current.dict.set(PDFLib.PDFName.of("Next"), nodes[i + 1].ref);
+        if (current.children.length > 0) {
+          current.dict.set(PDFLib.PDFName.of("First"), current.children[0].ref);
+          current.dict.set(PDFLib.PDFName.of("Last"), current.children[current.children.length - 1].ref);
+          current.dict.set(PDFLib.PDFName.of("Count"), PDFLib.PDFNumber.of(current.children.length));
+          linkSiblings(current.children);
+        }
+      }
+    }
+
+    linkSiblings(topLevel);
+
+    const outlineDict = context.obj({
+      Type: PDFLib.PDFName.of("Outlines"),
+      First: topLevel[0].ref,
+      Last: topLevel[topLevel.length - 1].ref,
+      Count: PDFLib.PDFNumber.of(topLevel.length)
+    });
+
+    pdfDoc.catalog.set(PDFLib.PDFName.of("Outlines"), context.register(outlineDict));
+    pdfDoc.catalog.set(PDFLib.PDFName.of("PageMode"), PDFLib.PDFName.of("UseOutlines"));
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], { type: "application/pdf" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    const originalName = file.name.replace(/\.pdf$/i, '');
+    link.download = `${originalName}-带书签.pdf`;
+
+    link.click();
+  }
+</script>

@@ -1,0 +1,261 @@
+defaultTheme = "light"
+[breadcrumb]
+    enable = true
+    sticky = true
+    showHome = true
+    separator = "/"
+    capitalize = false
+[math]
+    enable = true
+[search]
+    enable = true
+    type = "fuse"
+    contentLength = 4000
+    placeholder = ""
+    maxResultLength = 10
+    snippetLength = 30
+    highlightTag = "em"
+    absoluteURL = false
+    [search.algolia]
+        index = ""
+        appID = ""
+        searchKey = ""
+    [search.fuse]
+        isCaseSensitive = false
+        minMatchCharLength = 2
+        findAllMatches = false
+        location = 0
+        threshold = 0.3
+        distance = 100
+        ignoreLocation = false
+        useExtendedSearch = false
+        ignoreFieldNorm = false
+[page]
+    authorAvatar = true
+    hiddenFromHomePage = false
+    hiddenFromSearch = false
+    hiddenFromRelated = false
+    hiddenFromFeed = false
+    twemoji = false
+    lightgallery = true
+    ruby = true
+    fraction = true
+    fontawesome = true
+    license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>'
+    linkToMarkdown = false
+    linkToSource = true
+    linkToEdit = true
+    linkToReport = true
+    pageStyle = "normal"
+    autoBookmark = false
+    wordCount = true
+    readingTime = true
+    endFlag = "End."
+    instantPage = false
+    collectionList = true
+    collectionNavigation = true
+    [page.toc]
+        enable = true
+        keepStatic = false
+        auto = false
+        position = "right"
+        ordered = false
+        startLevel = 2
+        endLevel = 6
+    [page.share]
+        enable = false
+        Twitter = true
+        Facebook = true
+        Linkedin = false
+        Whatsapp = false
+        Pinterest = false
+        Tumblr = false
+        HackerNews = false
+        Reddit = false
+        VK = false
+        Buffer = false
+        Xing = false
+        Line = false
+        Instapaper = false
+        Pocket = false
+        Flipboard = false
+        Weibo = true
+        Myspace = false
+        Blogger = false
+        Baidu = false
+        Odnoklassniki = false
+        Evernote = false
+        Skype = false
+        Trello = false
+        Mix = false
+[home]
+    paginate = 10
+    [home.profile]
+        enable = true
+        gravatarEmail = "ych817@aucklanduni.ac.nz"
+        avatarURL = "/clebsch.svg"
+        avatarMenu = ""
+        title = "采石场"
+        subtitle = "有好多沉积岩呀 !"
+        typeit = true
+        social = true
+        disclaimer = ""
+    [home.posts]
+        enable = false
+        paginate = 6
+[app]
+    name = "采石场"
+    shortName = "CSC"
+    noFavicon = false
+    svgFavicon = "/favicon.svg"
+    iconColor = "#5bbad5"
+    tileColor = "#da532c"
+    [params.app.themeColor]
+        light = "#f8f8f8"
+        dark = "#252627"
+[social]
+    [social.GitHub]
+        # 排列图标时的权重（权重越大，图标的位置越靠后）
+        weight = 10
+        # 你的社交 ID
+        id = "ych817"
+        prefix = "https://github.com/"
+        title = "Github"
+        [social.GitHub.icon]
+            class = "fa-brands fa-github fa-fw"
+  [social.bilibili]
+        weight = 20
+        id = "3494349406997416"
+        prefix = "https://space.bilibili.com/"
+        title = "bilibili"
+        [social.bilibili.icon]
+            class = "fa-brands fa-bilibili"
+    Linkedin = ""
+    Twitter = ""
+    Instagram = ""
+    Facebook = ""
+    Telegram = ""
+    Medium = ""
+    Gitlab = ""
+    Youtubelegacy = ""
+    Youtubecustom = ""
+    Youtubechannel = ""
+    Tumblr = ""
+    Quora = ""
+    Keybase = ""
+    Pinterest = ""
+    Reddit = ""
+    Codepen = ""
+    FreeCodeCamp = ""
+    Bitbucket = ""
+    Stackoverflow = ""
+    Weibo = ""
+    Odnoklassniki = ""
+    VK = ""
+    Flickr = ""
+    Xing = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Bandcamp = ""
+    Paypal = ""
+    Fivehundredpx = ""
+    Mix = ""
+    Goodreads = ""
+    Lastfm = ""
+    Foursquare = ""
+    Hackernews = ""
+    Kickstarter = ""
+    Patreon = ""
+    Steam = ""
+    Twitch = ""
+    Strava = ""
+    Skype = ""
+    Whatsapp = ""
+    Zhihu = ""
+    Douban = ""
+    Angellist = ""
+    Slidershare = ""
+    Jsfiddle = ""
+    Deviantart = ""
+    Behance = ""
+    Dribbble = ""
+    Wordpress = ""
+    Vine = ""
+    Googlescholar = ""
+    Researchgate = ""
+    Mastodon = ""
+    Thingiverse = ""
+    Devto = ""
+    Gitea = ""
+    XMPP = ""
+    Matrix = ""
+    ORCID = ""
+    Liberapay = ""
+    Ko-Fi = ""
+    BuyMeaCoffee = ""
+    Linktree = ""
+    QQ = ""
+    QQGroup = "" # https://qun.qq.com/join.html
+    Diaspora = ""
+    CSDN = ""
+    Discord = ""
+    DiscordInvite = ""
+    Lichess = ""
+    Pleroma = ""
+    Kaggle = ""
+    MediaWiki= ""
+    Plume = ""
+    HackTheBox = ""
+    RootMe = ""
+    Feishu = ""
+    TryHackMe = ""
+    Douyin = ""
+    TikTok = ""
+    Credly = ""
+    Bluesky = ""
+    Phone = ""
+    Email = ""
+    # RSS = false
+    # custom social links like the following
+    # [social.twitter]
+    #   id = "lruihao"
+    #   weight = 3
+    #   prefix = "https://twitter.com/"
+    #   Title = "Twitter"
+    #   [social.twitter.icon]
+    #     class = "fa-brands fa-x-twitter fa-fw"
+[typeit]
+    speed = 100
+    cursorSpeed = 1000
+    cursorChar = "|"
+    duration = -1
+    loop = false
+[footer]
+    enable = true
+    copyright = true
+    author = true
+    since = ""
+    gov = ""
+    icp = ""
+    license = ""
+    [footer.powered]
+        enable = true
+        hugoLogo = false
+        themeLogo = false
+    [footer.siteTime]
+        enable = false
+        animate = true
+        icon = "fa-solid fa-heartbeat"
+        pre = ""
+        value = ""
+    [footer.order]
+        powered = 0
+        copyright = 0
+        statistics = 0
+        visitor = 0
+        beian = 0
+[list]
+    # 控制文章排序顺序
+    paginate = 20
+    orderBy = "last modified"

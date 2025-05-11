@@ -1,0 +1,31 @@
+_merge = "shallow"
+[highlight]
+    codeFences = true
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    guessSyntax = true
+[goldmark]
+    [goldmark.extensions]
+        strikethrough = false
+    # [goldmark.extensions.cjk]
+    #     eastAsianLineBreaks = true
+    #     eastAsianLineBreaksStyle = 'simple'
+    #     enable = false
+    #     escapedSpace = false
+    [goldmark.extensions.passthrough]
+        enable = true
+    [goldmark.extensions.passthrough.delimiters]
+        block = [['\[', '\]'], ['$$', '$$']]
+        inline = [['\(', '\)'], ['$', '$']]
+    [goldmark.extensions.extras]
+        [goldmark.extensions.extras.delete]
+            enable = true
+        [goldmark.extensions.extras.insert]
+            enable = true
+        [goldmark.extensions.extras.mark]
+            enable = true
+        [goldmark.extensions.extras.subscript]
+            enable = true
+        [goldmark.extensions.extras.superscript]
+            enable = true

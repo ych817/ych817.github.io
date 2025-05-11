@@ -1,0 +1,26 @@
+<!-- /layouts/shortcodes/svg-file.html -->
+{{ $svg := .Get "src" }}
+{{ $svgPath := path.Join "static" $svg }}
+{{ if fileExists $svgPath }}
+  <div class="svg-container">
+    {{ readFile $svgPath | safeHTML }}
+  </div>
+  <style>
+    .svg-container {
+      display: inline-block;
+      width: 100%;
+      max-width: {{ with .Get "max-width" }}{{ . }}{{ else }}100%{{ end }};
+      height: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    .svg-container svg {
+      width: auto;
+      height: auto;
+      {{ with .Get "fill" }} fill: {{ . }};{{ end }}
+      {{ with .Get "stroke" }} stroke: {{ . }};{{ end }}
+    }
+  </style>
+{{ else }}
+  {{ errorf "SVG file not found: %s" $svgPath }}
+{{ end }}

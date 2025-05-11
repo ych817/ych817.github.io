@@ -1,0 +1,37 @@
+{{- /* MathBox support for code fences extended and shortcodes. */ -}}
+{{- $width := .Options.width | default "100%" -}}
+{{- $height := .Options.height | default "20rem" -}}
+{{- $id := printf "mathbox-%d" now.UnixNano -}}
+
+<div id="{{ $id }}" class="mathbox" style="width: {{ $width }}; height: {{ $height }}; 
+margin: 0.5rem 0; border: 1px solid; border-radius: 10px; overflow: hidden; position: relative; 
+page-break-inside: avoid; break-inside: avoid;"></div>
+
+<script>
+(function(){
+  const container = document.getElementById('{{ $id }}');
+
+  const userScript = function(container) {
+    // 注入监控：等待用户 new dat.GUI() 并把它移到容器内
+    const oldAppendChild = document.body.appendChild;
+    document.body.appendChild = function (el) {
+      if (el.classList?.contains('dg')) {
+        container.appendChild(el);  // 👈 强制把 GUI 控件放进你想要的地方
+        el.style.position = 'absolute';
+        el.style.top = '1rem';
+        el.style.right = '1rem';
+        return el;
+      }
+      return oldAppendChild.call(this, el);
+    };
+
+    {{ .Inner | replaceRE "MathBox\\.mathBox\\s*\\(\\s*\\{" (printf "MathBox.mathBox({ element: container,") | safeJS }}
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", () => userScript(container));
+  } else {
+    userScript(container);
+  }
+})();
+</script>

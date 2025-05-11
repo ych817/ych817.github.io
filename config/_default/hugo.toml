@@ -1,0 +1,5 @@
+title = '采石场'
+baseURL = 'https://ych817.github.io'
+languageCode = 'zh-CN'
+theme = ['FixIt']
+defaultContentLanguage = 'zh-cn'

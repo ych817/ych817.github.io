@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>翻译-EOPL-04 - 采石场</title><meta name="author" content="">
+<meta name="description" content="Hello
+"><meta name="keywords" content='翻译, EOPL, 函数式编程, Racket, Lisp'>
+  <meta itemprop="name" content="翻译-EOPL-04">
+  <meta itemprop="description" content="Hello">
+  <meta itemprop="datePublished" content="2025-04-03T23:49:32+13:00">
+  <meta itemprop="dateModified" content="2025-04-03T23:49:32+13:00">
+  <meta itemprop="wordCount" content="1">
+  <meta itemprop="keywords" content="翻译,EOPL,函数式编程,Racket,Lisp"><meta property="og:url" content="http://localhost:1313/posts/a588704/">
+  <meta property="og:site_name" content="采石场">
+  <meta property="og:title" content="翻译-EOPL-04">
+  <meta property="og:description" content="Hello">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-03T23:49:32+13:00">
+    <meta property="article:modified_time" content="2025-04-03T23:49:32+13:00">
+    <meta property="article:tag" content="翻译">
+    <meta property="article:tag" content="EOPL">
+    <meta property="article:tag" content="函数式编程">
+    <meta property="article:tag" content="Racket">
+    <meta property="article:tag" content="Lisp">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="翻译-EOPL-04">
+  <meta name="twitter:description" content="Hello">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/posts/a588704/" title="翻译-EOPL-04 - 采石场" /><link rel="prev" type="text/html" href="http://localhost:1313/posts/a3b7a27/" title="翻译-EOPL-03" /><link rel="next" type="text/html" href="http://localhost:1313/posts/d83fb0b/" title="翻译-EOPL-05" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/posts/a588704/index.md" title="翻译-EOPL-04 - 采石场"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "翻译-EOPL-04",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/a588704\/"
+    },"genre": "posts","keywords": "翻译, EOPL, 函数式编程, Racket, Lisp","wordcount":  1 ,
+    "url": "http:\/\/localhost:1313\/posts\/a588704\/","datePublished": "2025-04-03T23:49:32+13:00","dateModified": "2025-04-03T23:49:32+13:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="采石场"><span class="header-title-text">采石场</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/"><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-feather fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/archives/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item">
+              <a class="menu-link" href="/collections/"><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden="true"></i> 合集</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/"><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/about"><i class="fa-solid fa-circle-user fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="采石场"><span class="header-title-text">采石场</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/"><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item"><a class="menu-link" href="/posts/"><i class="fa-solid fa-feather fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item"><a class="menu-link" href="/archives/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 归档</a></li><li class="menu-item"><a class="menu-link" href="/collections/"><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden="true"></i> 合集</a></li><li class="menu-item"><a class="menu-link" href="/categories/"><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item"><a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item"><a class="menu-link" href="/about"><i class="fa-solid fa-circle-user fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="采石场">主页</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">文章</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">翻译-EOPL-04</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"><div class="details collection-details open">
+      <div class="details-summary collection-summary">
+        <i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i>
+        <span class="collection-name" title="合集">翻译-EOPL</span>
+        <span class="collection-count">5</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></div>
+      <div class="details-content collection-content">
+        <nav>
+          <ul class="collection-list"><li class="collection-item"><a href="/posts/d83fb0b/" title="翻译-EOPL-05">翻译-EOPL-05</a></li><li class="collection-item"><span class="active" title="翻译-EOPL-04">翻译-EOPL-04</span></li><li class="collection-item"><a href="/posts/a3b7a27/" title="翻译-EOPL-03">翻译-EOPL-03</a></li><li class="collection-item"><a href="/posts/1568c34/" title="翻译-EOPL-02-数据抽象">翻译-EOPL-02-数据抽象</a></li><li class="collection-item"><a href="/posts/5cce8df/" title="翻译-EOPL-01-递归的数据集">翻译-EOPL-01-递归的数据集</a></li></ul>
+          <div class="collection-nav-simple"><a href="/posts/d83fb0b/" class="collection-nav-item" rel="prev" title="翻译-EOPL-05"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i></a><span class="text-secondary">2/5</span><a href="/posts/a3b7a27/" class="collection-nav-item" rel="next" title="翻译-EOPL-03"><i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+        </nav>
+      </div>
+    </div></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>翻译-EOPL-04</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span><span class="post-included-in">&nbsp;收录于 <a href="/collections/%E7%BF%BB%E8%AF%91-eopl/" class="post-collection" title="合集 - 翻译-EOPL"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 翻译-EOPL</a></span></div><div class="post-meta-line"><span title="发布于 2025-04-03 23:49:32"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-03">2025-04-03</time></span>&nbsp;<span title="1 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 100 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 1 分钟</span>&nbsp;</div>
+    </div><div class="content" id="content" data-end-flag="End."><p>Hello</p></div><div class="collection-card">
+      <div class="collection-title text-secondary">收录于 <a href="/collections/%E7%BF%BB%E8%AF%91-eopl/"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> <span>合集・翻译-EOPL</span></span></a> 5</div>
+      <div class="collection-nav">
+        <a href="/posts/d83fb0b/" class="collection-nav-item" rel="prev" title="翻译-EOPL-05"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i><span>翻译-EOPL-05</span>
+          </a><a href="/posts/a3b7a27/" class="collection-nav-item" rel="next" title="翻译-EOPL-03">
+            <span>翻译-EOPL-03</span><i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+
+<div id="print-controls" style="text-align: center; margin: 2rem 0;">
+  <button id="upload-btn" style="
+    background-color: #444;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+  ">点此上传本博文对应的 PDF 以自动为 PDF 添加书签</button>
+  <input type="file" id="pdf-upload" accept="application/pdf" style="display: none;" />
+</div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("upload-btn").addEventListener("click", () => {
+      document.getElementById("pdf-upload").click();
+    });
+    document.getElementById("pdf-upload").addEventListener("change", handlePdfUpload);
+  });
+
+  window.addEventListener("beforeprint", () => {
+    const headers = document.querySelectorAll(".single-title, .content h2, .content h3, .content h4");
+    headers.forEach((el, i) => {
+      if (el.querySelector("a.md-print-anchor")) return;
+      const anchor = document.createElement("a");
+      anchor.href = `af://n${i}`;
+      anchor.className = "md-header-anchor md-print-anchor";
+      anchor.style.display = "inline-block";
+      anchor.style.height = "0.1pt";
+      anchor.style.width = "0.1pt";
+      anchor.style.overflow = "hidden";
+      anchor.style.color = "transparent";
+      el.insertBefore(anchor, el.firstChild);
+    });
+  });
+
+  window.addEventListener("afterprint", () => {
+    document.querySelectorAll(".md-print-anchor").forEach(a => a.remove());
+  });
+
+  async function handlePdfUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return alert("请先选择一个 PDF 文件");
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+    const pages = pdfDoc.getPages();
+    const context = pdfDoc.context;
+
+    const markerMap = new Map();
+    for (let i = 0; i < pages.length; i++) {
+      const annots = pages[i].node.Annots?.();
+      if (!annots) continue;
+      for (let j = 0; j < annots.size(); j++) {
+        try {
+          const ann = annots.lookup(j, PDFLib.PDFDict);
+          const subtype = ann.get(PDFLib.PDFName.of("Subtype"));
+          if (subtype?.asString() !== "/Link") continue;
+          const action = ann.get(PDFLib.PDFName.of("A"));
+          const uri = action?.get(PDFLib.PDFName.of("URI"))?.asString();
+          const rect = ann.get(PDFLib.PDFName.of("Rect"))?.asRectangle();
+          const match = /^af:\/\/(.+)$/.exec(uri);
+          if (!match) continue;
+          const anchorId = match[1];
+          const y = rect.y;
+          markerMap.set(anchorId, { pageIndex: i, y });
+        } catch (err) {
+          console.warn("annotation parse failed", err);
+        }
+      }
+    }
+
+    const headings = Array.from(document.querySelectorAll(".single-title, .content h2, .content h3, .content h4"))
+      .map((el, i) => ({
+        level: el.matches(".single-title") ? 1 : parseInt(el.tagName[1]),
+        text: el.innerText.trim(),
+        marker: `n${i}`
+      }))
+      .filter(h => markerMap.has(h.marker));
+
+    if (headings.length === 0) {
+      alert("未在 PDF 中找到任何 af:// 书签标记，请确认已插入锚点并打印。");
+      return;
+    }
+
+    const outlineNodes = [];
+    headings.forEach(({ text, level, marker }) => {
+      const { pageIndex, y } = markerMap.get(marker);
+      const page = pages[pageIndex];
+      const destArray = context.obj([
+        page.ref,
+        PDFLib.PDFName.of("XYZ"),
+        PDFLib.PDFNumber.of(0),
+        PDFLib.PDFNumber.of(y),
+        PDFLib.PDFNull
+      ]);
+      const dict = context.obj({
+        Title: PDFLib.PDFHexString.fromText(text),
+        Dest: destArray
+      });
+      const ref = context.register(dict);
+      outlineNodes.push({ dict, ref, level, children: [] });
+    });
+
+    const stack = [], topLevel = [];
+    outlineNodes.forEach(node => {
+      while (stack.length > 0 && stack[stack.length - 1].level >= node.level) stack.pop();
+      if (stack.length === 0) topLevel.push(node);
+      else stack[stack.length - 1].children.push(node);
+      stack.push(node);
+    });
+
+    function linkSiblings(nodes) {
+      for (let i = 0; i < nodes.length; i++) {
+        const current = nodes[i];
+        if (i > 0) current.dict.set(PDFLib.PDFName.of("Prev"), nodes[i - 1].ref);
+        if (i < nodes.length - 1) current.dict.set(PDFLib.PDFName.of("Next"), nodes[i + 1].ref);
+        if (current.children.length > 0) {
+          current.dict.set(PDFLib.PDFName.of("First"), current.children[0].ref);
+          current.dict.set(PDFLib.PDFName.of("Last"), current.children[current.children.length - 1].ref);
+          current.dict.set(PDFLib.PDFName.of("Count"), PDFLib.PDFNumber.of(current.children.length));
+          linkSiblings(current.children);
+        }
+      }
+    }
+
+    linkSiblings(topLevel);
+
+    const outlineDict = context.obj({
+      Type: PDFLib.PDFName.of("Outlines"),
+      First: topLevel[0].ref,
+      Last: topLevel[topLevel.length - 1].ref,
+      Count: PDFLib.PDFNumber.of(topLevel.length)
+    });
+
+    pdfDoc.catalog.set(PDFLib.PDFName.of("Outlines"), context.register(outlineDict));
+    pdfDoc.catalog.set(PDFLib.PDFName.of("PageMode"), PDFLib.PDFName.of("UseOutlines"));
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], { type: "application/pdf" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    const originalName = file.name.replace(/\.pdf$/i, '');
+    link.download = `${originalName}-带书签.pdf`;
+
+    link.click();
+  }
+</script><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2025-04-03 23:49:32">更新于 2025-04-03&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="vscode://file//mnt/d/Studies/Myself/Arena/fixit/content/posts/read-EOPL-Chpt04.md" title="在编辑器中打开"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-vscode">在编辑器中打开</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E7%BF%BB%E8%AF%91/" class="post-tag" title="标签 - 翻译">翻译</a><a href="/tags/eopl/" class="post-tag" title="标签 - EOPL">EOPL</a><a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="post-tag" title="标签 - 函数式编程">函数式编程</a><a href="/tags/racket/" class="post-tag" title="标签 - Racket">Racket</a><a href="/tags/lisp/" class="post-tag" title="标签 - Lisp">Lisp</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/a3b7a27/" class="post-nav-item" rel="prev" title="翻译-EOPL-03"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>翻译-EOPL-03</a><a href="/posts/d83fb0b/" class="post-nav-item" rel="next" title="翻译-EOPL-05">翻译-EOPL-05<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.147.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.21-a85a6655">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"version":"v0.3.21-a85a6655"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

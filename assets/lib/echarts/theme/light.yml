@@ -1,0 +1,73 @@
+# light theme inspired by ECharts default
+color:
+  - '#5470C6'
+  - '#91CC75'
+  - '#FAC858'
+  - '#EE6666'
+  - '#73C0DE'
+  - '#3BA272'
+  - '#FC8452'
+  - '#9A60B4'
+  - '#EA7CCC'
+
+backgroundColor: '#f5f5f5'
+
+textStyle: {}
+
+title:
+  textStyle:
+    color: '#333333'
+  subtextStyle:
+    color: '#666666'
+
+graph:
+  itemStyle:
+    borderWidth: 0
+    borderColor: '#ccc'
+    # color: auto  # 让节点颜色跟随分类色自动设定
+  lineStyle:
+    width: 1
+    color: '#aaa'
+  symbolSize: 5
+  symbol: circle
+  label:
+    color: '#333333'
+
+legend:
+  textStyle:
+    color: '#333333'
+
+tooltip:
+  axisPointer:
+    lineStyle:
+      color: '#aaa'
+      width: 1
+    crossStyle:
+      color: '#aaa'
+      width: 1
+
+categoryAxis:
+  axisLine:
+    lineStyle:
+      color: '#888'
+  axisLabel:
+    color: '#333'
+
+valueAxis:
+  axisLine:
+    lineStyle:
+      color: '#888'
+  axisLabel:
+    color: '#333'
+
+toolbox:
+  iconStyle:
+    borderColor: '#5470C6'
+  emphasis:
+    iconStyle:
+      borderColor: '#333'
+
+visualMap:
+  color:
+    - '#5470C6'
+    - '#EE6666'

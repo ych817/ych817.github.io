@@ -1,0 +1,8 @@
+{{- $options := .Get "width" | default (.Get 0) | dict "width" -}}
+{{- $options = .Get "height" | default (.Get 1) | dict "height" | merge $options -}}
+{{- $options = .Get "renderer" | default "svg" | dict "renderer" | merge $options -}}
+{{- with .Get "id" }}
+  {{- $options = merge $options (dict "id" .) -}}
+{{- end }}
+{{- dict "Options" $options "Inner" .Inner | partial "plugin/jsxgraph.html" -}}
+{{- .Page.Store.Set "hasJSXGraph" true -}}
