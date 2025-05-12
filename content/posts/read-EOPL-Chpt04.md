@@ -13,7 +13,7 @@ description:
 keywords:
 license:
 comment: false
-weight: EOPL04
+weight:
 tags:
   - 翻译
   - EOPL
